@@ -1,38 +1,20 @@
-﻿#include "Maze.h"
-
+#include "Maze.h"
+#include "MCell.h"
 using namespace std;
 
-Maze::Maze(int n, int m)
-{
-	m_field = new MCell[n * m];
-	m_n = n;
-	m_m = m;
-}
-
-bool MCell::down() { return m_down; }
-
-MCell::MCell()
-{
-	m_down = false;
-	m_right= false;
-}
-
-bool MCell::right() { return m_right; }
-
-const MCell& Maze::cell(int i, int j) const { return *m_field; }
 
 bool Maze::hasConnection(int i1, int j1, int i2, int j2)
 {
 	if (!cellMaze(i1, j1) || !cellMaze(i2, j2)) { return false; }
-	
+
 	if (j1 < j2)
 	{
-		return m_field[j1 * m_n + i1].m_right ;
+		return m_field[j1 * m_n + i1].m_right;
 	}
 
 	else if (j1 > j2)
 	{
-		return m_field[j2 * m_n + i2].m_right ;
+		return m_field[j2 * m_n + i2].m_right;
 	}
 
 	else if (i1 < i2)
@@ -44,7 +26,7 @@ bool Maze::hasConnection(int i1, int j1, int i2, int j2)
 	{
 		return m_field[j2 * m_n + i2].m_down;
 	}
-	
+
 }
 
 void Maze::makeConnection(int i1, int j1, int i2, int j2)
@@ -95,7 +77,7 @@ void Maze::removeConnection(int i1, int j1, int i2, int j2)
 	}
 };
 
-bool Maze::cellMaze(int i, int j) { return i >= 0 && i < m_n && j >= 0 && j < m_m; }
+bool Maze::cellMaze(int i, int j) { return i >= 0 && i < m_n&& j >= 0 && j < m_m; }
 
 void Maze::printMaze()
 {
@@ -107,13 +89,13 @@ void Maze::printMaze()
 	{
 		for (int j = 0; j < m_m; j++)
 		{
-			if (hasConnection(i, j, i , j-1))
+			if (hasConnection(i, j, i, j - 1))
 				left = true;
-			if (hasConnection(i, j, i-1, j))
+			if (hasConnection(i, j, i - 1, j))
 				up = true;
-			if (hasConnection(i, j, i, j+1))
+			if (hasConnection(i, j, i, j + 1))
 				right = true;
-			if (hasConnection(i, j, i+1, j ))
+			if (hasConnection(i, j, i + 1, j))
 				down = true;
 			if (left && up && right && down)
 				cout << (char)197;
