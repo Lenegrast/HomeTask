@@ -1,10 +1,8 @@
 #pragma once
-#pragma once
+#include "MCell.h"
 #include <cstdlib>
 #include <iostream>
 
-
-class MCell;
 
 class Maze
 {

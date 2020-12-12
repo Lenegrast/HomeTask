@@ -12,5 +12,4 @@ private:
 public:
 	bool right();
 	bool down();
-	friend class Maze;
 };

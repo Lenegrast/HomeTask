@@ -77,6 +77,16 @@ void Maze::removeConnection(int i1, int j1, int i2, int j2)
 	}
 };
 
+Maze::Maze(int n, int m)
+{
+	m_field = new MCell[n * m];
+	m_n = n;
+	m_m = m;
+}
+
+const MCell& Maze::cell(int i, int j) const { return *m_field; }
+
+
 bool Maze::cellMaze(int i, int j) { return i >= 0 && i < m_n&& j >= 0 && j < m_m; }
 
 void Maze::printMaze()
